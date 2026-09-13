@@ -116,13 +116,13 @@
         /* 3-Column Studio Grid Layout */
         .catalog-layout {
             display: grid;
-            grid-template-columns: 200px 300px 1fr;
+            grid-template-columns: 180px 340px 1fr;
             gap: 24px;
         }
 
         /* Sidebar Navigation & Filters */
         .sidebar h3 {
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 12px;
             text-transform: uppercase;
             color: var(--rbx-text-muted);
@@ -159,15 +159,15 @@
             background-color: rgba(0, 116, 189, 0.1);
         }
 
-        /* --- 2019 Avatar Preview Box Styles --- */
+        /* --- 2019 Avatar Editor Pane Styles --- */
         .avatar-preview-pane {
             background-color: var(--rbx-card);
             border: 1px solid var(--rbx-border);
             border-radius: 4px;
-            padding: 15px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 16px;
             height: fit-content;
         }
 
@@ -176,12 +176,39 @@
             font-weight: 600;
             border-bottom: 1px solid var(--rbx-border);
             padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* 2D Canvas Rig representing classic blocky avatars */
+        /* Scale Configuration Tabs (R6 / R15) */
+        .scale-tabs {
+            display: flex;
+            background-color: rgba(0,0,0,0.2);
+            padding: 2px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--rbx-text-muted);
+            padding: 4px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .tab-btn.active {
+            background-color: var(--rbx-border);
+            color: var(--rbx-text);
+        }
+
+        /* 2D Canvas Viewport representing 2019 web-render engine */
         .avatar-canvas {
             width: 100%;
-            height: 280px;
+            height: 300px;
             background: radial-gradient(circle, #3a3d40 0%, #1e2022 100%);
             border: 1px solid #111;
             border-radius: 3px;
@@ -189,17 +216,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
 
-        /* Character Component Blocks */
+        /* Character Rig Block Component Assembler */
         .rig-head {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             background-color: #E29C12;
             position: absolute;
-            top: 60px;
+            top: 55px;
             border-radius: 2px;
             box-shadow: inset -3px -3px 0px rgba(0,0,0,0.15);
+            transition: background-color 0.2s;
         }
 
         .rig-face {
@@ -213,65 +242,92 @@
         }
 
         .rig-torso {
-            width: 80px;
-            height: 80px;
+            width: 82px;
+            height: 82px;
             background-color: #0074BD;
             position: absolute;
-            top: 103px;
+            top: 100px;
             border-radius: 2px;
             box-shadow: inset -4px -4px 0px rgba(0,0,0,0.15);
         }
 
         .rig-left-arm, .rig-right-arm {
-            width: 38px;
-            height: 80px;
+            width: 39px;
+            height: 82px;
             background-color: #E29C12;
             position: absolute;
-            top: 103px;
+            top: 100px;
             border-radius: 2px;
             box-shadow: inset -3px -4px 0px rgba(0,0,0,0.15);
+            transition: background-color 0.2s;
         }
 
-        .rig-left-arm { left: 59px; }
-        .rig-right-arm { right: 59px; }
+        .rig-left-arm { left: 50px; }
+        .rig-right-arm { right: 50px; }
 
         .rig-left-leg, .rig-right-leg {
-            width: 38px;
-            height: 80px;
+            width: 39px;
+            height: 82px;
             background-color: #A34A1B;
             position: absolute;
-            top: 186px;
+            top: 185px;
             border-radius: 2px;
             box-shadow: inset -3px -4px 0px rgba(0,0,0,0.15);
         }
 
-        .rig-left-leg { left: 101px; }
-        .rig-right-leg { right: 101px; }
+        .rig-left-leg { left: 92px; }
+        .rig-right-leg { right: 92px; }
 
-        /* Dynamic Visual Mounts for Custom 2019 Hats */
+        /* Accessory Mount Positions */
         .rig-hat-slot {
             position: absolute;
-            top: 25px;
-            width: 70px;
-            height: 50px;
+            top: 15px;
+            width: 80px;
+            height: 55px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 46px;
+            font-size: 52px;
             z-index: 10;
             pointer-events: none;
-            filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
+            filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.6));
         }
 
-        /* Equipped Accessories Registry Box */
+        /* 2019 Classic Skin Color Changer Tools */
+        .skin-editor-box h4 {
+            font-size: 13px;
+            color: var(--rbx-text-muted);
+            margin-bottom: 8px;
+        }
+
+        .skin-palette {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+        }
+
+        .color-dot {
+            aspect-ratio: 1;
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .color-dot:hover {
+            transform: scale(1.15);
+            border-color: #fff;
+        }
+
+        /* Wearing manifest status */
         .equipped-items-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
 
         .equipped-tag {
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(255,255,255,0.04);
             border: 1px solid var(--rbx-border);
             padding: 6px 10px;
             border-radius: 3px;
@@ -287,12 +343,13 @@
             color: #FF4A4A;
             cursor: pointer;
             font-weight: bold;
+            padding: 0 4px;
         }
 
         /* Main Store Grid Architecture */
         .item-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 16px;
         }
 
@@ -303,61 +360,3 @@
             padding: 12px;
             display: flex;
             flex-direction: column;
-            cursor: pointer;
-            transition: transform 0.1s ease, border-color 0.1s ease;
-        }
-
-        .item-card:hover {
-            transform: translateY(-2px);
-            border-color: #555759;
-        }
-
-        .item-image {
-            width: 100%;
-            aspect-ratio: 1;
-            background-color: #1A1C1E;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            margin-bottom: 10px;
-            user-select: none;
-            position: relative;
-        }
-
-        /* Dual Tone Graphics for custom Valkyrie styling */
-        .purple-blue-overlay {
-            background: linear-gradient(135deg, #7F00FF 0%, #0074BD 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .sparkle-overlay {
-            text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
-        }
-
-        .item-name {
-            font-size: 14px;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 4px;
-            color: var(--rbx-text);
-        }
-
-        .item-creator {
-            font-size: 12px;
-            color: var(--rbx-text-muted);
-            margin-bottom: 12px;
-        }
-
-        .item-price {
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-
-            
