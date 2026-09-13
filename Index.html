@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro19 - 2019 Roblox Revival</title>
+    <title>Retro19 - 2019 Roblox Catalog & Avatar Editor</title>
     <style>
+        /* Authentic 2019 Roblox Dark Theme Color Scheme */
         :root {
             --rbx-bg: #191B1D;
             --rbx-nav: #232527;
@@ -26,9 +27,10 @@
         body {
             background-color: var(--rbx-bg);
             color: var(--rbx-text);
+            overflow-y: scroll;
         }
 
-        /* Navigation Bar */
+        /* 2019 Era Navigation Bar Layout */
         nav {
             background-color: var(--rbx-nav);
             border-bottom: 1px solid var(--rbx-border);
@@ -77,13 +79,25 @@
             gap: 5px;
             font-size: 14px;
             font-weight: 600;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4px 10px;
+            border-radius: 3px;
         }
 
-        /* Main Layout */
+        /* Hexagonal Robux geometry from 2019 refresh */
+        .robux-icon {
+            width: 14px;
+            height: 14px;
+            background-color: var(--rbx-green);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: inline-block;
+        }
+
+        /* Main Workspace Framework */
         .container {
             margin-top: 64px;
             padding: 20px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -96,19 +110,20 @@
         header p {
             color: var(--rbx-text-muted);
             margin-bottom: 20px;
+            font-size: 14px;
         }
 
-        /* Catalog Layout */
+        /* 3-Column Studio Grid Layout */
         .catalog-layout {
             display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 20px;
+            grid-template-columns: 200px 300px 1fr;
+            gap: 24px;
         }
 
-        /* Sidebar Filters */
+        /* Sidebar Navigation & Filters */
         .sidebar h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
+            font-size: 14px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             color: var(--rbx-text-muted);
             letter-spacing: 0.5px;
@@ -117,6 +132,8 @@
         .filter-list {
             list-style: none;
             margin-bottom: 20px;
+            border-bottom: 1px solid var(--rbx-border);
+            padding-bottom: 15px;
         }
 
         .filter-item button {
@@ -124,50 +141,201 @@
             border: none;
             color: var(--rbx-text);
             font-size: 14px;
-            padding: 8px 0;
+            padding: 8px 12px;
             width: 100%;
             text-align: left;
             cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.15s ease;
         }
 
-        .filter-item button:hover, .filter-item button.active {
+        .filter-item button:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .filter-item button.active {
             color: var(--rbx-blue);
             font-weight: 600;
+            background-color: rgba(0, 116, 189, 0.1);
         }
 
-        /* Item Grid */
+        /* --- 2019 Avatar Preview Box Styles --- */
+        .avatar-preview-pane {
+            background-color: var(--rbx-card);
+            border: 1px solid var(--rbx-border);
+            border-radius: 4px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            height: fit-content;
+        }
+
+        .avatar-preview-pane h3 {
+            font-size: 16px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--rbx-border);
+            padding-bottom: 8px;
+        }
+
+        /* 2D Canvas Rig representing classic blocky avatars */
+        .avatar-canvas {
+            width: 100%;
+            height: 280px;
+            background: radial-gradient(circle, #3a3d40 0%, #1e2022 100%);
+            border: 1px solid #111;
+            border-radius: 3px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Character Component Blocks */
+        .rig-head {
+            width: 40px;
+            height: 40px;
+            background-color: #E29C12;
+            position: absolute;
+            top: 60px;
+            border-radius: 2px;
+            box-shadow: inset -3px -3px 0px rgba(0,0,0,0.15);
+        }
+
+        .rig-face {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            user-select: none;
+        }
+
+        .rig-torso {
+            width: 80px;
+            height: 80px;
+            background-color: #0074BD;
+            position: absolute;
+            top: 103px;
+            border-radius: 2px;
+            box-shadow: inset -4px -4px 0px rgba(0,0,0,0.15);
+        }
+
+        .rig-left-arm, .rig-right-arm {
+            width: 38px;
+            height: 80px;
+            background-color: #E29C12;
+            position: absolute;
+            top: 103px;
+            border-radius: 2px;
+            box-shadow: inset -3px -4px 0px rgba(0,0,0,0.15);
+        }
+
+        .rig-left-arm { left: 59px; }
+        .rig-right-arm { right: 59px; }
+
+        .rig-left-leg, .rig-right-leg {
+            width: 38px;
+            height: 80px;
+            background-color: #A34A1B;
+            position: absolute;
+            top: 186px;
+            border-radius: 2px;
+            box-shadow: inset -3px -4px 0px rgba(0,0,0,0.15);
+        }
+
+        .rig-left-leg { left: 101px; }
+        .rig-right-leg { right: 101px; }
+
+        /* Dynamic Visual Mounts for Custom 2019 Hats */
+        .rig-hat-slot {
+            position: absolute;
+            top: 25px;
+            width: 70px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 46px;
+            z-index: 10;
+            pointer-events: none;
+            filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
+        }
+
+        /* Equipped Accessories Registry Box */
+        .equipped-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .equipped-tag {
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid var(--rbx-border);
+            padding: 6px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #FF4A4A;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Main Store Grid Architecture */
         .item-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
+            gap: 16px;
         }
 
         .item-card {
             background-color: var(--rbx-card);
             border: 1px solid var(--rbx-border);
-            border-radius: 3px;
-            padding: 10px;
+            border-radius: 4px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
             cursor: pointer;
-            transition: transform 0.1s ease;
+            transition: transform 0.1s ease, border-color 0.1s ease;
         }
 
         .item-card:hover {
             transform: translateY(-2px);
-            border-color: var(--rbx-text-muted);
+            border-color: #555759;
         }
 
         .item-image {
             width: 100%;
             aspect-ratio: 1;
-            background-color: #111;
+            background-color: #1A1C1E;
+            border: 1px solid rgba(0,0,0,0.1);
             border-radius: 3px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            margin-bottom: 8px;
+            font-size: 48px;
+            margin-bottom: 10px;
+            user-select: none;
+            position: relative;
+        }
+
+        /* Dual Tone Graphics for custom Valkyrie styling */
+        .purple-blue-overlay {
+            background: linear-gradient(135deg, #7F00FF 0%, #0074BD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sparkle-overlay {
+            text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
         }
 
         .item-name {
@@ -177,132 +345,19 @@
             overflow: hidden;
             text-overflow: ellipsis;
             margin-bottom: 4px;
+            color: var(--rbx-text);
         }
 
         .item-creator {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--rbx-text-muted);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .item-price {
             margin-top: auto;
             display: flex;
             align-items: center;
-            gap: 4px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--rbx-green);
-        }
+            gap: 5px;
 
-        .robux-icon {
-            width: 14px;
-            height: 14px;
-            background-color: var(--rbx-green);
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: inline-block;
-        }
-
-        .free-tag {
-            color: var(--rbx-text-muted);
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <div class="nav-left">
-            <a href="#" class="logo">ROBLOX</a>
-            <a href="#" class="nav-link">Games</a>
-            <a href="#" class="nav-link active">Catalog</a>
-            <a href="#" class="nav-link">Develop</a>
-            <a href="#" class="nav-link">Robux</a>
-        </div>
-        <div class="nav-right">
-            <div class="currency-display">
-                <span class="robux-icon"></span>
-                <span id="robux-count">10,000</span>
-            </div>
-            <a href="#" class="nav-link">Profile</a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <header>
-            <h1>Catalog</h1>
-            <p>2019 Revival Edition — All Accessories Unlocked</p>
-        </header>
-
-        <div class="catalog-layout">
-            <aside class="sidebar">
-                <h3>Accessories</h3>
-                <ul class="filter-list">
-                    <li class="filter-item"><button class="active" onclick="filterCategory('all')">All Accessories</button></li>
-                    <li class="filter-item"><button onclick="filterCategory('hat')">Hats</button></li>
-                    <li class="filter-item"><button onclick="filterCategory('hair')">Hair</button></li>
-                    <li class="filter-item"><button onclick="filterCategory('face')">Face</button></li>
-                    <li class="filter-item"><button onclick="filterCategory('neck')">Neck</button></li>
-                    <li class="filter-item"><button onclick="filterCategory('shoulder')">Shoulder</button></li>
-                    <li class="filter-item"><button onclick="filterCategory('front')">Front</button></li>
-                    <li class="filter-item"><button onclick="filterCategory('back')">Back</button></li>
-                    <li class="filter-item"><button onclick="filterCategory('waist')">Waist</button></li>
-                </ul>
-            </aside>
-
-            <main>
-                <div class="item-grid" id="catalog-grid">
-                    <!-- Items dynamically generated by JavaScript -->
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <script>
-        // High quality 2019-era item database mockup
-        const catalogItems = [
-            { id: 1, name: "Valkyrie Helm", category: "hat", price: 50000, icon: "👑" },
-            { id: 2, name: "Beautiful Hair for Beautiful People", category: "hair", price: 95, icon: "💇" },
-            { id: 3, name: "Clockwork's Shades", category: "face", price: 150000, icon: "🕶️" },
-            { id: 4, name: "Teal Fire scarf", category: "neck", price: 150, icon: "🧣" },
-            { id: 5, name: "Pal Hair", category: "hair", price: 0, icon: "👦" },
-            { id: 6, name: "Swordpack", category: "back", price: 150, icon: "⚔️" },
-            { id: 7, name: "Fedora", category: "hat", price: 150, icon: "🎩" },
-            { id: 8, name: "Overseer Pauldrons", category: "shoulder", price: 300, icon: "🛡️" },
-            { id: 9, name: "Dominus Empyreus", category: "hat", price: 5000000, icon: "🦹" },
-            { id: 10, name: "Shaggy", category: "hair", price: 2, icon: "💇‍♂️" },
-            { id: 11, name: "Beast Mode", category: "face", price: 100, icon: "🐯" },
-            { id: 12, name: "Gold Ninja Mask", category: "face", price: 500, icon: "🥷" }
-        ];
-
-        function renderCatalog(filter = 'all') {
-            const grid = document.getElementById('catalog-grid');
-            grid.innerHTML = '';
-
-            const filtered = filter === 'all' 
-                ? catalogItems 
-                : catalogItems.filter(item => item.category === filter);
-
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'item-card';
-                
-                const priceDisplay = item.price === 0 
-                    ? '<span class="free-tag">Free</span>' 
-                    : `<span class="robux-icon"></span> ${item.price.toLocaleString()}`;
-
-                card.innerHTML = `
-                    <div class="item-image">${item.icon}</div>
-                    <div class="item-name" title="${item.name}">${item.name}</div>
-                    <div class="item-creator">By Roblox</div>
-                    <div class="item-price">${priceDisplay}</div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function filterCategory(category) {
-            // Update active state in sidebar
-            const buttons = document.querySelectorAll('.filter-item button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
             
