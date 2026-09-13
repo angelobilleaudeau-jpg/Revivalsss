@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retro19 - 2019 Roblox Catalog & Avatar Editor</title>
     <style>
-        /* Authentic 2019 Roblox Dark Theme Color Scheme */
+        /* Modernized Light/Bright Theme Theme with 2019 Structural Layout */
         :root {
-            --rbx-bg: #191B1D;
-            --rbx-nav: #232527;
-            --rbx-card: #2B2D2F;
-            --rbx-text: #FFFFFF;
-            --rbx-text-muted: #B8B8B8;
-            --rbx-green: #00B06F;
-            --rbx-blue: #0074BD;
-            --rbx-border: #393B3D;
+            --rbx-bg: #E3E4E4;          /* Light gray background */
+            --rbx-nav: #DE2E27;         /* Red Top Bar Theme */
+            --rbx-card: #FFFFFF;        /* Bright white item cards */
+            --rbx-text: #191B1D;        /* Dark text for visibility */
+            --rbx-text-muted: #5A5D60;  /* Secondary text color */
+            --rbx-green: #00B06F;       /* Robux price green */
+            --rbx-blue: #0074BD;        /* Selected elements blue */
+            --rbx-border: #BDC3C7;      /* Clean crisp borders */
         }
 
         * {
@@ -30,10 +30,10 @@
             overflow-y: scroll;
         }
 
-        /* 2019 Era Navigation Bar Layout */
+        /* 2019 Era Navigation Bar Layout with Requested Red Color */
         nav {
             background-color: var(--rbx-nav);
-            border-bottom: 1px solid var(--rbx-border);
+            border-bottom: 2px solid #B81D18;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -56,21 +56,23 @@
             font-weight: 700;
             font-size: 20px;
             letter-spacing: -0.5px;
-            color: var(--rbx-text);
+            color: #FFFFFF;
             text-decoration: none;
         }
 
         .nav-link {
-            color: var(--rbx-text);
+            color: #FFFFFF;
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
+            opacity: 0.9;
         }
 
         .nav-link:hover, .nav-link.active {
-            border-bottom: 2px solid var(--rbx-text);
+            border-bottom: 2px solid #FFFFFF;
             padding-bottom: 10px;
             margin-bottom: -10px;
+            opacity: 1;
         }
 
         .currency-display {
@@ -79,16 +81,17 @@
             gap: 5px;
             font-size: 14px;
             font-weight: 600;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.15);
             padding: 4px 10px;
             border-radius: 3px;
+            color: #FFFFFF;
         }
 
         /* Hexagonal Robux geometry from 2019 refresh */
         .robux-icon {
             width: 14px;
             height: 14px;
-            background-color: var(--rbx-green);
+            background-color: #FFFFFF;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             display: inline-block;
         }
@@ -150,7 +153,7 @@
         }
 
         .filter-item button:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.05);
         }
 
         .filter-item button.active {
@@ -159,7 +162,7 @@
             background-color: rgba(0, 116, 189, 0.1);
         }
 
-        /* --- 2019 Avatar Editor Pane Styles --- */
+        /* --- Avatar Editor Pane Styles --- */
         .avatar-preview-pane {
             background-color: var(--rbx-card);
             border: 1px solid var(--rbx-border);
@@ -184,7 +187,7 @@
         /* Scale Configuration Tabs (R6 / R15) */
         .scale-tabs {
             display: flex;
-            background-color: rgba(0,0,0,0.2);
+            background-color: rgba(0,0,0,0.05);
             padding: 2px;
             border-radius: 4px;
             font-size: 12px;
@@ -201,22 +204,23 @@
         }
 
         .tab-btn.active {
-            background-color: var(--rbx-border);
+            background-color: #FFFFFF;
             color: var(--rbx-text);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        /* 2D Canvas Viewport representing 2019 web-render engine */
+        /* Bright Grid Canvas Viewport representing 2019 light web-render engine */
         .avatar-canvas {
             width: 100%;
             height: 300px;
-            background: radial-gradient(circle, #3a3d40 0%, #1e2022 100%);
-            border: 1px solid #111;
+            background: radial-gradient(circle, #FFFFFF 0%, #EBEBEB 100%);
+            border: 1px solid var(--rbx-border);
             border-radius: 3px;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
         }
 
         /* Character Rig Block Component Assembler */
@@ -225,9 +229,10 @@
             height: 42px;
             background-color: #E29C12;
             position: absolute;
-            top: 55px;
+            top: 65px;
             border-radius: 2px;
             box-shadow: inset -3px -3px 0px rgba(0,0,0,0.15);
+            z-index: 5;
             transition: background-color 0.2s;
         }
 
@@ -246,9 +251,10 @@
             height: 82px;
             background-color: #0074BD;
             position: absolute;
-            top: 100px;
+            top: 110px;
             border-radius: 2px;
             box-shadow: inset -4px -4px 0px rgba(0,0,0,0.15);
+            z-index: 4;
         }
 
         .rig-left-arm, .rig-right-arm {
@@ -256,9 +262,10 @@
             height: 82px;
             background-color: #E29C12;
             position: absolute;
-            top: 100px;
+            top: 110px;
             border-radius: 2px;
             box-shadow: inset -3px -4px 0px rgba(0,0,0,0.15);
+            z-index: 4;
             transition: background-color 0.2s;
         }
 
@@ -270,9 +277,10 @@
             height: 82px;
             background-color: #A34A1B;
             position: absolute;
-            top: 185px;
+            top: 195px;
             border-radius: 2px;
             box-shadow: inset -3px -4px 0px rgba(0,0,0,0.15);
+            z-index: 4;
         }
 
         .rig-left-leg { left: 92px; }
@@ -281,7 +289,7 @@
         /* Accessory Mount Positions */
         .rig-hat-slot {
             position: absolute;
-            top: 15px;
+            top: 22px;
             width: 80px;
             height: 55px;
             display: flex;
@@ -290,7 +298,7 @@
             font-size: 52px;
             z-index: 10;
             pointer-events: none;
-            filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.6));
+            filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.25));
         }
 
         /* 2019 Classic Skin Color Changer Tools */
@@ -309,14 +317,14 @@
         .color-dot {
             aspect-ratio: 1;
             border-radius: 3px;
-            border: 1px solid rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,0,0,0.2);
             cursor: pointer;
             transition: transform 0.1s;
         }
 
         .color-dot:hover {
             transform: scale(1.15);
-            border-color: #fff;
+            border-color: #555;
         }
 
         /* Wearing manifest status */
@@ -327,7 +335,7 @@
         }
 
         .equipped-tag {
-            background-color: rgba(255,255,255,0.04);
+            background-color: #F2F4F5;
             border: 1px solid var(--rbx-border);
             padding: 6px 10px;
             border-radius: 3px;
@@ -343,20 +351,3 @@
             color: #FF4A4A;
             cursor: pointer;
             font-weight: bold;
-            padding: 0 4px;
-        }
-
-        /* Main Store Grid Architecture */
-        .item-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 16px;
-        }
-
-        .item-card {
-            background-color: var(--rbx-card);
-            border: 1px solid var(--rbx-border);
-            border-radius: 4px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
