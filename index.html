@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retro19 - 2019 Roblox Catalog & Avatar Editor</title>
     <style>
-        /* Modernized Light/Bright Theme Theme with 2019 Structural Layout */
+        /* Light Theme Color Scheme with 2019 Structural Layout */
         :root {
-            --rbx-bg: #E3E4E4;          /* Light gray background */
-            --rbx-nav: #DE2E27;         /* Red Top Bar Theme */
-            --rbx-card: #FFFFFF;        /* Bright white item cards */
-            --rbx-text: #191B1D;        /* Dark text for visibility */
-            --rbx-text-muted: #5A5D60;  /* Secondary text color */
-            --rbx-green: #00B06F;       /* Robux price green */
-            --rbx-blue: #0074BD;        /* Selected elements blue */
-            --rbx-border: #BDC3C7;      /* Clean crisp borders */
+            --rbx-bg: #E3E4E4;          
+            --rbx-nav: #DE2E27;         
+            --rbx-card: #FFFFFF;        
+            --rbx-text: #191B1D;        
+            --rbx-text-muted: #5A5D60;  
+            --rbx-green: #00B06F;       
+            --rbx-blue: #0074BD;        
+            --rbx-border: #BDC3C7;      
         }
 
         * {
@@ -30,7 +30,7 @@
             overflow-y: scroll;
         }
 
-        /* 2019 Era Navigation Bar Layout with Requested Red Color */
+        /* 2019 Era Navigation Bar Layout - Bright Red Styling */
         nav {
             background-color: var(--rbx-nav);
             border-bottom: 2px solid #B81D18;
@@ -87,7 +87,6 @@
             color: #FFFFFF;
         }
 
-        /* Hexagonal Robux geometry from 2019 refresh */
         .robux-icon {
             width: 14px;
             height: 14px;
@@ -123,7 +122,7 @@
             gap: 24px;
         }
 
-        /* Sidebar Navigation & Filters */
+        /* Sidebar Navigation Categories */
         .sidebar h3 {
             font-size: 13px;
             margin-bottom: 12px;
@@ -162,7 +161,7 @@
             background-color: rgba(0, 116, 189, 0.1);
         }
 
-        /* --- Avatar Editor Pane Styles --- */
+        /* Avatar Editor Canvas Container */
         .avatar-preview-pane {
             background-color: var(--rbx-card);
             border: 1px solid var(--rbx-border);
@@ -184,7 +183,6 @@
             align-items: center;
         }
 
-        /* Scale Configuration Tabs (R6 / R15) */
         .scale-tabs {
             display: flex;
             background-color: rgba(0,0,0,0.05);
@@ -209,7 +207,7 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        /* Bright Grid Canvas Viewport representing 2019 light web-render engine */
+        /* Bright Grid Canvas Viewport */
         .avatar-canvas {
             width: 100%;
             height: 300px;
@@ -223,7 +221,7 @@
             box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
         }
 
-        /* Character Rig Block Component Assembler */
+        /* Character Block Assembler Rig */
         .rig-head {
             width: 42px;
             height: 42px;
@@ -233,7 +231,6 @@
             border-radius: 2px;
             box-shadow: inset -3px -3px 0px rgba(0,0,0,0.15);
             z-index: 5;
-            transition: background-color 0.2s;
         }
 
         .rig-face {
@@ -266,7 +263,6 @@
             border-radius: 2px;
             box-shadow: inset -3px -4px 0px rgba(0,0,0,0.15);
             z-index: 4;
-            transition: background-color 0.2s;
         }
 
         .rig-left-arm { left: 50px; }
@@ -286,7 +282,7 @@
         .rig-left-leg { left: 92px; }
         .rig-right-leg { right: 92px; }
 
-        /* Accessory Mount Positions */
+        /* Accessory Mount Overlay Positions */
         .rig-hat-slot {
             position: absolute;
             top: 22px;
@@ -301,7 +297,7 @@
             filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.25));
         }
 
-        /* 2019 Classic Skin Color Changer Tools */
+        /* Skin Palette Tools */
         .skin-editor-box h4 {
             font-size: 13px;
             color: var(--rbx-text-muted);
@@ -319,7 +315,6 @@
             border-radius: 3px;
             border: 1px solid rgba(0,0,0,0.2);
             cursor: pointer;
-            transition: transform 0.1s;
         }
 
         .color-dot:hover {
@@ -327,7 +322,6 @@
             border-color: #555;
         }
 
-        /* Wearing manifest status */
         .equipped-items-list {
             display: flex;
             flex-direction: column;
@@ -351,3 +345,23 @@
             color: #FF4A4A;
             cursor: pointer;
             font-weight: bold;
+        }
+
+        /* Item Grid Space */
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .item-card {
+            background-color: var(--rbx-card);
+            border: 1px solid var(--rbx-border);
+            border-radius: 4px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .item-card:hover {
